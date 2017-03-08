@@ -2,7 +2,10 @@ package com.devruslan.domain.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,6 +28,7 @@ public class FeatureEntity {
     private String browser;
     @NotNull
     private String platform;
+    @NotNull
     private String engineVersion;
     @NotNull
     private String cssGrade;
