@@ -2,10 +2,7 @@ package com.devruslan.domain.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table
+@Table(name = "feature")
 public class FeatureEntity {
     @Id
     @GeneratedValue
@@ -31,4 +28,12 @@ public class FeatureEntity {
     private String engineVersion;
     @NotNull
     private String cssGrade;
+
+    public FeatureEntity(String renderingEngine, String browser, String platform, String engineVersion, String cssGrade) {
+        this.renderingEngine = renderingEngine;
+        this.browser = browser;
+        this.platform = platform;
+        this.engineVersion = engineVersion;
+        this.cssGrade = cssGrade;
+    }
 }
