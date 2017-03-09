@@ -1,15 +1,16 @@
 package com.devruslan.controller;
 
 import com.devruslan.domain.dto.FeatureDto;
-import com.devruslan.domain.entity.FeatureEntity;
 import com.devruslan.domain.resource.FeatureResource;
 import com.devruslan.repository.FeatureRepository;
 import com.devruslan.service.FeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.devruslan.controller.FeatureController.FEATURE_CONTROLLER_URL;
