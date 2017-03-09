@@ -1,6 +1,7 @@
 package com.devruslan.configuration;
 
 import com.devruslan.convertor.FeatureDtoToFeatureEntity;
+import com.devruslan.convertor.FeatureEntityToFeatureDto;
 import com.devruslan.convertor.FeatureEntityToFeatureResource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ public class ConverterConfiguration {
         final Set<Converter> converters = new HashSet<>();
         converters.add(new FeatureDtoToFeatureEntity());
         converters.add(new FeatureEntityToFeatureResource());
+        converters.add(new FeatureEntityToFeatureDto());
         bean.setConverters(converters);
         return bean;
     }

@@ -32,11 +32,9 @@ public class FeatureController {
         this.featureService = featureService;
     }
 
-    @RequestMapping(path = {"/all"}, method = {RequestMethod.GET})
-    public ResponseEntity<List<FeatureEntity>> getFuture() {
-        List<FeatureEntity> all = new ArrayList<>();
-        featureRepository.findAll().forEach(all::add);
-        return ResponseEntity.ok(all);
+    @RequestMapping(method = {RequestMethod.GET})
+    public ResponseEntity<List<FeatureDto>> getAll() {
+        return ResponseEntity.ok(featureService.getAll());
     }
 
     @RequestMapping(method = {RequestMethod.POST})
