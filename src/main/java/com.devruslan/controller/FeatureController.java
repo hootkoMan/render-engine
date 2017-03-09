@@ -6,10 +6,7 @@ import com.devruslan.repository.FeatureRepository;
 import com.devruslan.service.FeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,6 +40,13 @@ public class FeatureController {
 //        featureService.validate(featureDto); //create realisation
         final FeatureResource result = featureService.create(featureDto);
         return ResponseEntity.ok(result);
+    }
+
+    @RequestMapping(value = "/{featureId}", method = {RequestMethod.PUT})
+    public ResponseEntity<FeatureResource> update(@PathVariable("featereId") final Long featereId,
+                                                  @RequestBody final FeatureDto featureDto) {
+        FeatureResource update = featureService.update(featereId, featureDto);
+        return ResponseEntity.ok(update);
     }
 }
 

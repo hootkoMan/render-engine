@@ -17,4 +17,6 @@ public interface FeatureService {
     FeatureResource create(final FeatureDto dto);
 
     List<FeatureDto> getAll();
+
+    FeatureResource update(Long featereId, FeatureDto featureDto);
 }

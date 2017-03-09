@@ -50,4 +50,21 @@ public class FeatureServiceImpl implements FeatureService {
             .map(e -> conversionService.convert(e, FeatureDto.class))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public FeatureResource update(Long featureId, FeatureDto featureDto) {
+        FeatureResource resource = new FeatureResource();
+        final FeatureEntity entity = featureRepository.findOne(featureId);
+        final FeatureResource updated = update(entity, featureDto);
+        // todo
+        return updated;
+    }
+
+    private FeatureResource update(FeatureEntity entity, FeatureDto dto) {
+        FeatureResource resource = new FeatureResource();
+
+        // TODO
+
+        return resource;
+    }
 }
