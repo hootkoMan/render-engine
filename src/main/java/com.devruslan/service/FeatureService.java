@@ -1,8 +1,11 @@
 package com.devruslan.service;
 
 import com.devruslan.domain.dto.FeatureDto;
+import com.devruslan.domain.entity.FeatureEntity;
 import com.devruslan.domain.resource.FeatureResource;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by rus on 08.03.17.
@@ -12,4 +15,6 @@ public interface FeatureService {
     void validate(final FeatureDto dto);
 
     FeatureResource create(final FeatureDto dto);
+
+    List<FeatureDto> getAll();
 }
