@@ -6,6 +6,8 @@ import com.devruslan.domain.resource.FeatureResource;
 import com.devruslan.repository.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -76,6 +78,13 @@ public class FeatureServiceImpl implements FeatureService {
         return featureRepository.exists(featureId)
             ? deleteFromDb(featureId)
             : new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponseEntity<Page<FeatureResource>> getPage(Integer page, Integer size) {
+        return ResponseEntity.ok(featureRepository.findAll(new PageRequest(page, size))
+            .map(entity -> conversionService.convert(entity, FeatureResource.class)));
     }
 
     private FeatureResource update(final FeatureEntity entity, final FeatureDto dto) {

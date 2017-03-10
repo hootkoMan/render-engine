@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import static com.devruslan.controller.FeatureController.FEATURE_CONTROLLER_URL;
 
 /**
@@ -27,8 +25,13 @@ public class FeatureController {
     }
 
     @RequestMapping(method = {RequestMethod.GET})
-    public ResponseEntity<List<FeatureDto>> getAll() {
-        return ResponseEntity.ok(featureService.getAll());
+    public ResponseEntity<?> getAll(@RequestParam(value = "page", defaultValue = "-1") final Integer page,
+                                    @RequestParam(value = "size", defaultValue = "5") final Integer size) {
+        if (page != -1) {
+            return featureService.getPage(page, size);
+        } else {
+            return ResponseEntity.ok(featureService.getAll());
+        }
     }
 
     @RequestMapping(method = {RequestMethod.POST})

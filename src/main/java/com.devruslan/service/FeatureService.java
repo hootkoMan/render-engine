@@ -2,6 +2,7 @@ package com.devruslan.service;
 
 import com.devruslan.domain.dto.FeatureDto;
 import com.devruslan.domain.resource.FeatureResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,6 @@ public interface FeatureService {
     ResponseEntity getOne(Long featureId);
 
     ResponseEntity delete(Long featureId);
+
+    ResponseEntity<Page<FeatureResource>> getPage(Integer page, Integer size);
 }
