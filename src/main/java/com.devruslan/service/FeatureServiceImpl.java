@@ -6,6 +6,8 @@ import com.devruslan.domain.resource.FeatureResource;
 import com.devruslan.repository.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +60,14 @@ public class FeatureServiceImpl implements FeatureService {
 //        validate(featureDto);        //todo validate
         final FeatureEntity entity = featureRepository.findOne(featureId);
         return update(entity, featureDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponseEntity getOne(Long featureId) {
+        return featureRepository.exists(featureId)
+            ? ResponseEntity.ok(conversionService.convert(featureRepository.findOne(featureId), FeatureDto.class))
+            : new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     private FeatureResource update(final FeatureEntity entity, final FeatureDto dto) {

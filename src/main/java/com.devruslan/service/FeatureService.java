@@ -1,8 +1,8 @@
 package com.devruslan.service;
 
 import com.devruslan.domain.dto.FeatureDto;
-import com.devruslan.domain.entity.FeatureEntity;
 import com.devruslan.domain.resource.FeatureResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,5 +18,7 @@ public interface FeatureService {
 
     List<FeatureDto> getAll();
 
-    FeatureResource update(Long featereId, FeatureDto featureDto);
+    FeatureResource update(Long featureId, FeatureDto featureDto);
+
+    ResponseEntity getOne(Long featureId);
 }
