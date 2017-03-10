@@ -36,6 +36,7 @@ public class FeatureServiceImpl implements FeatureService {
     @Override
     @Transactional
     public FeatureResource create(FeatureDto dto) {
+//        validate(featureDto); //todo validate
         final FeatureEntity entity = conversionService.convert(dto, FeatureEntity.class);
         featureRepository.save(entity);
         return conversionService.convert(entity, FeatureResource.class);
@@ -52,19 +53,20 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
     @Override
+    @Transactional
     public FeatureResource update(Long featureId, FeatureDto featureDto) {
-        FeatureResource resource = new FeatureResource();
+//        validate(featureDto);        //todo validate
         final FeatureEntity entity = featureRepository.findOne(featureId);
-        final FeatureResource updated = update(entity, featureDto);
-        // todo
-        return updated;
+        return update(entity, featureDto);
     }
 
-    private FeatureResource update(FeatureEntity entity, FeatureDto dto) {
-        FeatureResource resource = new FeatureResource();
-
-        // TODO
-
-        return resource;
+    private FeatureResource update(final FeatureEntity entity, final FeatureDto dto) {
+        entity.setBrowser(dto.getBrowser());
+        entity.setCssGrade(dto.getCssGrade());
+        entity.setEngineVersion(dto.getEngineVersion());
+        entity.setPlatform(dto.getPlatform());
+        entity.setRenderingEngine(dto.getRenderingEngine());
+        featureRepository.save(entity);
+        return conversionService.convert(entity, FeatureResource.class);
     }
 }

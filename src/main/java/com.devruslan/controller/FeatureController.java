@@ -37,15 +37,14 @@ public class FeatureController {
 
     @RequestMapping(method = {RequestMethod.POST})
     public ResponseEntity<FeatureResource> create(@RequestBody final FeatureDto featureDto) {
-//        featureService.validate(featureDto); //create realisation
         final FeatureResource result = featureService.create(featureDto);
         return ResponseEntity.ok(result);
     }
 
     @RequestMapping(value = "/{featureId}", method = {RequestMethod.PUT})
-    public ResponseEntity<FeatureResource> update(@PathVariable("featereId") final Long featereId,
+    public ResponseEntity<FeatureResource> update(@PathVariable("featureId") final Long featureId,
                                                   @RequestBody final FeatureDto featureDto) {
-        FeatureResource update = featureService.update(featereId, featureDto);
+        FeatureResource update = featureService.update(featureId, featureDto);
         return ResponseEntity.ok(update);
     }
 }
