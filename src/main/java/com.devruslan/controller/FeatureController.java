@@ -48,5 +48,10 @@ public class FeatureController {
     public ResponseEntity getOne(@PathVariable("featureId") final Long featureId) {
         return featureService.getOne(featureId);
     }
+
+    @RequestMapping(value = "/{featureId}", method = {RequestMethod.DELETE})
+    public ResponseEntity delete(@PathVariable("featureId") final Long featureId) {
+        return featureService.delete(featureId);
+    }
 }
 

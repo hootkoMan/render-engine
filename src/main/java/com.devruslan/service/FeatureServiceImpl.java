@@ -70,6 +70,14 @@ public class FeatureServiceImpl implements FeatureService {
             : new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @Override
+    @Transactional
+    public ResponseEntity delete(final Long featureId) {
+        return featureRepository.exists(featureId)
+            ? deleteFromDb(featureId)
+            : new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
     private FeatureResource update(final FeatureEntity entity, final FeatureDto dto) {
         entity.setBrowser(dto.getBrowser());
         entity.setCssGrade(dto.getCssGrade());
@@ -78,5 +86,10 @@ public class FeatureServiceImpl implements FeatureService {
         entity.setRenderingEngine(dto.getRenderingEngine());
         featureRepository.save(entity);
         return conversionService.convert(entity, FeatureResource.class);
+    }
+
+    private ResponseEntity deleteFromDb(Long featureId) {
+        featureRepository.delete(featureId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

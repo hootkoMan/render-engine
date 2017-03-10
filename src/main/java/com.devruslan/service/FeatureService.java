@@ -21,4 +21,6 @@ public interface FeatureService {
     FeatureResource update(Long featureId, FeatureDto featureDto);
 
     ResponseEntity getOne(Long featureId);
+
+    ResponseEntity delete(Long featureId);
 }
