@@ -13,6 +13,10 @@ public class FeatureEntityToFeatureResource implements Converter<FeatureEntity, 
         FeatureResource resource = new FeatureResource();
         resource.setId(source.getId());
         resource.setRenderingEngine(source.getRenderingEngine());
+        resource.setBrowser(source.getBrowser());
+        resource.setEngineVersion(source.getEngineVersion());
+        resource.setCssGrade(source.getCssGrade());
+        resource.setPlatform(source.getPlatform());
         return resource;
     }
 }

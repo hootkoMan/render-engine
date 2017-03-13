@@ -13,4 +13,8 @@ import lombok.*;
 public class FeatureResource {
     private Long id;
     private String renderingEngine;
+    private String browser;
+    private String platform;
+    private String engineVersion;
+    private String cssGrade;
 }
